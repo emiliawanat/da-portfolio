@@ -11,7 +11,7 @@ Join dbo.Population pop
 On refa.Entity = pop.[Country name] and refa.Year = pop.Year;
 
 
--- Showing which country the refugees were fleeing from per capita
+-- Showing which country the refugees were fleeing from (the number of refugees in a given year in relation to the population)
 
 Select Entity, refo.Year, [Refugee population by country or territory of origin], Population, 
 	([Refugee population by country or territory of origin]/Population)*100 as DepartingRefugeesPercentage
@@ -21,7 +21,7 @@ On refo.Entity = pop.[Country name] and refo.Year = pop.Year
 Order by 1,2;
 
 
--- Showing which country the refugees were arriving (the number of refugees in relation to the population)
+-- Showing which country the refugees were arriving (the number of refugees in a given year in relation to the population)
 
 Select Entity, refa.Year, [Refugee population by country or territory of asylum], Population, 
 	([Refugee population by country or territory of asylum]/Population)*100 as IncomingRefugeesPercentage
@@ -42,7 +42,7 @@ Group by Entity
 Order by HighestPercentageOfArrivingRefugees desc;
 
 
--- Looking at the countries with the highest number of fleeing refugees per capita in 2020
+-- Looking at the countries with the highest number of fleeing refugees in 2020
 
 Select Entity, MAX(([Refugee population by country or territory of origin]/Population))*100 as HighestPercentageOfRefugeesFleeing
 From dbo.RefugeeOrigin refo 
